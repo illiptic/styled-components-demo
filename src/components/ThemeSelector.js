@@ -6,6 +6,7 @@ const ThemeSelector = styled.select`
 	width: 200px;
 	min-height: 100%;
   border-color: ${theme('colors.main')};
+	color: ${theme('colors.main')};
 `;
 
 export default ThemeSelector

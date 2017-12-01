@@ -1,9 +1,10 @@
 export default {
   colors: {
-    main: 'lightblue',
+    main: 'blue',
     highlight: 'cyan',
     background: 'white',
-    primary: 'blue',
+    'background-highlight': '#1dc2d8',
+    primary: 'darkblue',
     error: 'red'
   }
 }

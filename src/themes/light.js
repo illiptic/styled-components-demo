@@ -3,6 +3,7 @@ export default {
     main: 'grey',
     highlight: 'lightblue',
     background: 'white',
+    'background-highlight': 'lightgrey',
     primary: 'lightgreen',
     error: 'lightred'
   }

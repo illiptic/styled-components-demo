@@ -3,8 +3,8 @@ import ThemeSelector from './ThemeSelector.js'
 
 const options = [
 	{id: 'default', display: 'Default'},
-	{id: 'dark', display: 'Dark'}
-	// {id: 'light', display: 'Light'}
+	{id: 'dark', display: 'Dark'},
+	{id: 'light', display: 'Light'}
 ]
 
 class ThemeSelectorContainer extends Component {
