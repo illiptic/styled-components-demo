@@ -1,0 +1,37 @@
+{
+  "name": "styled-components-demo",
+  "version": "1.0.0",
+  "description": "Project demo for styled-components architecture",
+  "author": "illiptic",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/illiptic/styled-components-demo"
+  },
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node devServer.js"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-hot-loader": "^3.1.3",
+    "styled-components": "^2.2.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-react-transform": "^3.0.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "express": "^4.16.2",
+    "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-middleware": "^1.12.2",
+    "webpack-hot-middleware": "^2.21.0"
+  }
+}

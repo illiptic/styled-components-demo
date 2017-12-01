@@ -1,0 +1,10 @@
+{
+  "presets": ["react", ["env", {"modules": false}], "stage-3"],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    }
+  }
+}
