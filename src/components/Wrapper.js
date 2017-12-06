@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import {theme} from '../utils.js'
+import {theme, media} from '../utils.js'
 
 const Wrapper = styled.div`
-	width: 100%;
+	min-height: 600px;
   background-color: ${theme('colors.background')};
+
+	${media.large`background: dodgerblue;`}
+	${media.medium`background: mediumseagreen;`}
+	${media.small`background: palevioletred;`}
 `;
 
 export default Wrapper

@@ -9,9 +9,9 @@ const options = [
 
 class ThemeSelectorContainer extends Component {
 		render () {
-			let {onChange} = this.props
+			let {onChange, value} = this.props
 			return (
-				<ThemeSelector onChange={e => onChange(e.target.value)}>
+				<ThemeSelector value={value} onChange={e => onChange(e.target.value)}>
 					{options.map(o => (
 						<option key={o.id} value={o.id}>{o.display}</option>
 					))}

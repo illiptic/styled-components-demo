@@ -5,6 +5,14 @@ export default {
     background: 'grey',
     'background-highlight': 'lightgrey',
     primary: 'darkpurple',
-    error: 'red'
+    error: 'red',
+    gradient: {
+      start: '#dddddd',
+      end: '#888888'
+    },
+    primaryGradient: {
+      start: '#3355aa',
+      end: '#003388'
+    }
   }
 }
