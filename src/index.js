@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import './reset.css'
+import 'normalize.css/normalize.css'
 
 import App from './App';
 import { AppContainer } from 'react-hot-loader';
