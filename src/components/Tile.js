@@ -8,6 +8,11 @@ const Tile = styled.div`
 	padding: 5px;
 	margin: 5px;
 	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+	display: flex;
+
+	& > div {
+		flex: 1 0 auto;
+	}
 `;
 
 export default Tile

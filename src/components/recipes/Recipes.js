@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {ThemeProvider} from 'styled-components';
 
 import TilesContainer from '../TilesContainer.js'
-import RecipeContainer from './RecipeContainer.js'
+import Recipe from './Recipe.js'
 
 
 class Recipes extends Component{
@@ -20,7 +20,36 @@ class Recipes extends Component{
   getRecipes () {
     this.setState({
       recipes: [
-        {title:'PB&J', time: '5 min', ingredients:['Toast: 2 slices', 'Peanut Butter', 'Jam'], instructions:['Lay first slice of toast on the table', 'spread peanut butter with a knife', 'spread jam on top', 'place second slice of toast on top', 'voilà!'] }
+        {
+          title:'PB&J',
+          time: '5 min',
+          defaultServings: 2,
+          ingredients:[
+            {name: 'Toast', quantity: 2, unit: 'slices'},
+            {name: 'Peanut Butter', quantity: 1, unit: 'tablespoon'},
+            {name: 'Jam', quantity: 1, unit: 'tablespoon'}
+          ],
+          instructions:[
+            'Lay first slice of toast on the table',
+            'spread peanut butter with a knife',
+            'spread jam on top',
+            'place second slice of toast on top',
+            'voilà!'
+          ]
+        },
+        {
+          title:'Cereal',
+          time: '2 min',
+          ingredients:[
+            {name: 'cereal', quantity: 2, unit: 'cups'},
+            {name: 'milk', quantity: 1, unit: 'dl'}
+          ],
+          instructions:[
+            'Pour cereal in a bowl',
+            'pour milk on top',
+            'voilà!'
+          ]
+        }
       ]
     })
   }
@@ -30,7 +59,7 @@ class Recipes extends Component{
 
     return (
       <TilesContainer>
-        {recipes.map((recipe, i) => (<RecipeContainer key={i} {...recipe}/>))}
+        {recipes.map((recipe, i) => (<Recipe key={i} {...recipe}/>))}
       </TilesContainer>
     )
   }

@@ -17,5 +17,14 @@ export const Ingredients = styled.ul`
 `
 
 export const Ingredient = styled.li`
-	color: grey;
+
+	& .name {
+		display: inline-block;
+		width: 100px;
+		margin-right: 5px;
+	}
+
+	& .quantity {
+		color: ${theme('colors.main')}
+	}
 `
