@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ThemeProvider} from 'styled-components';
 
+import {getRecipes} from '../../api'
 import TilesContainer from '../TilesContainer.js'
 import Recipe from './Recipe.js'
 
@@ -9,58 +10,42 @@ class Recipes extends Component{
   constructor (props) {
     super(props);
     this.state = {
+      searchFilter: '',
       recipes: []
     };
   }
 
   componentDidMount () {
-    this.getRecipes()
+    this.loadData()
   }
 
-  getRecipes () {
-    this.setState({
-      recipes: [
-        {
-          title:'PB&J',
-          time: '5 min',
-          defaultServings: 2,
-          ingredients:[
-            {name: 'Toast', quantity: 2, unit: 'slices'},
-            {name: 'Peanut Butter', quantity: 1, unit: 'tablespoon'},
-            {name: 'Jam', quantity: 1, unit: 'tablespoon'}
-          ],
-          instructions:[
-            'Lay first slice of toast on the table',
-            'spread peanut butter with a knife',
-            'spread jam on top',
-            'place second slice of toast on top',
-            'voilà!'
-          ]
-        },
-        {
-          title:'Cereal',
-          time: '2 min',
-          ingredients:[
-            {name: 'cereal', quantity: 2, unit: 'cups'},
-            {name: 'milk', quantity: 1, unit: 'dl'}
-          ],
-          instructions:[
-            'Pour cereal in a bowl',
-            'pour milk on top',
-            'voilà!'
-          ]
-        }
-      ]
+  loadData () {
+    getRecipes().then(recipes => {
+      this.setState({recipes})
     })
   }
 
+  change (searchFilter) {
+    this.setState({searchFilter})
+  }
+
   render() {
-    let {recipes} = this.state
+    let {recipes, searchFilter} = this.state
+
+    let filteredRecipes = recipes.filter(r => (!searchFilter || (
+      r.title.indexOf(searchFilter) > -1 ||
+      r.ingredients.indexOf(searchFilter) > -1 ||
+      r.instructions.indexOf(searchFilter) > -1
+    )));
 
     return (
-      <TilesContainer>
-        {recipes.map((recipe, i) => (<Recipe key={i} {...recipe}/>))}
-      </TilesContainer>
+      <div>
+        <input onChange={e => this.change(e.target.value)}/>
+        <TilesContainer>
+          {filteredRecipes.map(recipe => (<Recipe key={recipe.id} {...recipe}/>))}
+        </TilesContainer>
+        <div>Showing {filteredRecipes.length} of {recipes.length}</div>
+      </div>
     )
   }
 }
