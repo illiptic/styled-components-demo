@@ -17,7 +17,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'styled components demo',
-      template: './src/index.html'
+      template: './src/template.html'
     }),
     new webpack.HotModuleReplacementPlugin()
   ],

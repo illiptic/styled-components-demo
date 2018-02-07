@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
-import Tile from './Tile.js'
-import Tiles from './Tiles.js'
+import {Tile, Tiles} from './TilesStyles'
 
 class TilesContainer extends Component {
 	render () {

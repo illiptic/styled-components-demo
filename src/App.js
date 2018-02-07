@@ -5,7 +5,6 @@ import themes from './themes'
 import Wrapper from './components/Wrapper.js'
 import HeaderContainer from './components/header/HeaderContainer.js'
 import SidebarContainer from './components/SidebarContainer.js'
-import TilesContainer from './components/TilesContainer.js'
 import Recipes from './components/recipes/Recipes.js'
 
 

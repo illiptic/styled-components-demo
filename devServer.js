@@ -19,7 +19,7 @@ app.use('/assets/', express.static('public'))
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'src/index.html'));
+  res.sendFile(path.join(__dirname, 'src/template.html'));
 });
 
 app.listen(PORT, 'localhost', function(err) {

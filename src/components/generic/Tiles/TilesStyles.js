@@ -1,8 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import {theme} from '../utils.js'
 
-const Tile = styled.div`
+export const Tiles = styled.div`
+	padding: 20px 10px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+`;
+
+export const Tile = styled.div`
 	flex: 1 1 auto;
 	min-width: 250px;
 	padding: 5px;
@@ -14,5 +20,3 @@ const Tile = styled.div`
 		flex: 1 0 auto;
 	}
 `;
-
-export default Tile

@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -14,6 +14,10 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      title: 'styled components demo',
+      template: './src/template.html'
+    }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
@@ -26,7 +30,6 @@ module.exports = {
       }
     }),
     new CopyWebpackPlugin([
-      { from: 'src/index.html' },
       { from: 'public/*.jpg', to: 'assets/[name].[ext]' },
       { from: 'public/favicon.ico' }
     ])

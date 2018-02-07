@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {ThemeProvider} from 'styled-components';
 
 import {getRecipes} from '../../api'
-import TilesContainer from '../TilesContainer.js'
-import Recipe from './Recipe.js'
+import RecipesContainer from './RecipesContainer'
 
 
 class Recipes extends Component{
@@ -41,9 +40,7 @@ class Recipes extends Component{
     return (
       <div>
         <input onChange={e => this.change(e.target.value)}/>
-        <TilesContainer>
-          {filteredRecipes.map(recipe => (<Recipe key={recipe.id} {...recipe}/>))}
-        </TilesContainer>
+        <RecipesContainer recipes={filteredRecipes} />
         <div>Showing {filteredRecipes.length} of {recipes.length}</div>
       </div>
     )
