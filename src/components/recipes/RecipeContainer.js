@@ -3,10 +3,10 @@ import React, {Component} from 'react';
 import {Recipe, Title, Ingredients, Ingredient, Instructions} from './RecipeStyles.js'
 
 class RecipeContainer extends Component {
-	onChangeServings (e) {
+	onChangeServings = (e) => {
 		let {changeServings} = this.props
 		changeServings(e.target.value)
-	}
+	};
 
 	render () {
 		let {title, ingredients, instructions, time, servings} = this.props
@@ -16,7 +16,7 @@ class RecipeContainer extends Component {
 				<Title>{title}</Title>
 				<div>{time}</div>
 				<div>Serving
-					<input type="number" min="1" max="1000" value={servings} onChange={this.onChangeServings.bind(this)}/>
+					<input type="number" min="1" max="1000" value={servings} onChange={this.onChangeServings}/>
 				</div>
 				<Ingredients>
 					{ingredients.map((ingredient, i) => (

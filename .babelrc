@@ -1,5 +1,5 @@
 {
-  "presets": ["react", ["env", {"modules": false}], "stage-3"],
+  "presets": ["react", ["env", {"modules": false}], "stage-2"],
   "env": {
     "development": {
       "plugins": [
