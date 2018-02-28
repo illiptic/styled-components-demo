@@ -2,7 +2,7 @@
 Organising React styled-components
 
 ## Why use styled-components?
-> I'm writing about styled-components, but this is valid for any similar library, such as [emotion][emotion] or [a whole list of others][cssinjs]
+> I'm writing about styled-components, but this is valid for any similar css-in-js library, such as [emotion][emotion] or [a whole list of others][cssinjs]
 
 There are already [many][a3] [good][a2] [articles][a1] [and][v2] [videos][v1] about this.
 
@@ -16,7 +16,7 @@ One advantage in using CSS is that the style is completely decoupled from the co
 Styled components make it easier to fall in the trap of strongly coupling style and logic. [Max Stoiber explains how to avoid this][v3], and the styled-components documentation also presents this decoupled structure. While the idea of separating logic and presentation is definitely not new, one might be tempted to take shortcuts when developing React components. It’s easy to create a Component for a validation button that handles the click action as well as the button’s style. It takes a bit more effort to split it in two Components.
 
 ## The Container/Presentational architecture
-This is a pretty simple principle. Components either define styles, or they manage data and logic. A very important aspect of presentation components is that they should never have any dependencies. They receive props and render dom (or children) accordingly.
+This is a pretty simple principle. Components either define how things look, or they manage data and logic. A very important aspect of presentation components is that they should never have any dependencies. They receive props and render dom (or children) accordingly.
 Containers on the other hand know about the data architecture (state, redux, flux, etc…), but should never concern themselves with display. Dan Abramov’s [article][dan] is a very good and detailed explanation of this architecture.
 
 
@@ -35,16 +35,16 @@ For the layout rules, if you use a UI framework, then it'll probably define cont
 
 Module is automatically followed by the architecture of styled-components, since the styles are attached to components directly, rather than described in external files. Each styled component that you write will be its own module, basically. You can really write your styling code without worrying about side-effects.
 
-State will be rules you define within your components as variable rules. You simply define a function to interpolate values of your css attributes. If using a UI framework, you might have useful classes to add to your components as well.
+State will be rules you define within your components as variable rules. You simply define a function to interpolate values of your css attributes. If using a UI framework, you might have useful classes to add to your components as well. You will probably also have css pseudo-selector rules, like hover, focus, etc.
 
-The theme can simply be interpolated like the state within your components. It is a good idea to define your theme as a set of variables to be used throughout your application. You can even derive colors programmatically (using a library, or manually), for instance to handle contrasts and highlights. Remember that you have the full power of a programming language at your disposal!
+The theme can simply be interpolated within your components. It is a good idea to define your theme as a set of variables to be used throughout your application. You can even derive colors programmatically (using a library, or manually), for instance to handle contrasts and highlights. Remember that you have the full power of a programming language at your disposal!
 
 ## Bring them together for a solution
 So what does a React app look like with clearly split components? It’s important to keep them together, for an easier navigation experience; We don’t want to organise them by type (presentation vs logic), but rather by functionality.
 
-Thus, we’ll have a “general” folder for all the generic components (buttons and such). The others should be organised depending on the project and its functionalities. For instance, if we have user management features, we should put all the components specific to that feature in a “users” folder, for instance.
+Thus, we’ll have a folder for all the generic components (buttons and such). The others should be organised depending on the project and its functionalities. For instance, if we have user management features, we should put all the components specific to that feature in a “users” folder, for instance.
 
-To apply styled-components Container/Presentation architecture to a SMACSS approach, we need an extra type of component: Structural. We end up with three kinds of components; styled, structural, and controller. Since styled-components decorate a tag (or component), we need this third type of component to structure the dom. In some cases it might be possible to allow a logic component to handle the structure of sub-components, but when the dom structure becomes complex and is required for visual purposes, it’s best to separate them. A good example is a table, where the dom typically gets quite verbose.
+To apply styled-components Container/Presentation architecture to a SMACSS approach, we need an extra type of component: Structural. We end up with three kinds of components; styled, structural, and container. Since styled-components decorate a tag (or component), we need this third type of component to structure the dom. In some cases it might be possible to allow a container component to handle the structure of sub-components, but when the dom structure becomes complex and is required for visual purposes, it’s best to separate them. A good example is a table, where the dom typically gets quite verbose.
 
 ## Example project
 Let’s build a small app that displays recipes, to illustrate these principles. We can start building a Recipes component. The parent component will be a controller. It will handle the state, in this case the list of recipes. It will also call an API function to fetch the data.
@@ -139,7 +139,7 @@ export const Tile = styled.div`
 
 Notice that this component is purely presentational. It defines its style, and wraps whatever children it receives inside another styled dom element that defines what tiles look like. It’s a good example of what your generic presentational components will look like architecturally.
 
-Then we need to define what a recipe looks like. We need a container component to describe the relatively complex dom, as well as define the style when necessary. We end up with this
+Then we need to define what a recipe looks like. We need a container component to describe the relatively complex dom, as well as define the style when necessary. We end up with this:
 
 ```javascript
 class RecipeContainer extends Component {
@@ -201,13 +201,22 @@ export const Ingredient = styled.li`
 `
 ```
 
+For the purpose of this exercise, I've used the _ThemeProvider_. It injects the theme in the props of styled components. You can simply use it as `color: ${props => props.theme.core_color}`, I'm just using a small wrapper to protect from missing attributes in the theme:
+
+```javascript
+const theme = (key) => (prop) => _.get(prop.theme, key) || console.warn('missing key', key)
+```
+
+You can also define your own constants in a module and use those instead. For example: `color: ${styleConstants.core_color}`.
 
 
 ## Pros
-One really neat feature of styled-components is that you can use it as little as you want. You can use your favorite UI framework and add styled-components on top of it. It also means to you can easily migrate an existing project component by component.
+One really neat feature of styled-components is that you can use it as little as you want. You can use your favorite UI framework and add styled-components on top of it. It also means to you can easily migrate an existing project component by component. You can choose to style most of the layout with standard css and only use styled-components for reusable components.  
 
 ## Cons
-Designers / style integrators will need to learn to navigate the project structure. If they are used to looking for css files (or sass/less), here they will need to follow the actual components. They will also need to change their tools a bit, if they want syntax highlighting, linting, etc.
+Designers / style integrators will need to learn to navigate the project structure. Although I would argue that finding the styles for a component in that component's folder is easier than having to find the right css/sass/less file that contains the rule you need to modify.
+
+They will also need to change their tools a bit, if they want syntax highlighting, linting, etc. A good place to start is with [this Atom plugin][atom] and [this babel plugin][babelplugin].
 
 [a1]: https://medium.com/drivetribe-engineering/why-were-slowly-migrating-to-styled-components-2f284d4b5d95
 [a2]: https://hackernoon.com/why-we-use-styled-components-at-decisiv-a8ac6e1507ac
@@ -219,3 +228,6 @@ Designers / style integrators will need to learn to navigate the project structu
 [smacss]: https://smacss.com/book/categorizing
 [cssinjs]: https://github.com/MicheleBertoli/css-in-js
 [emotion]: https://emotion.sh
+
+[babelplugin]: https://github.com/styled-components/babel-plugin-styled-components
+[atom]: https://atom.io/packages/language-babel

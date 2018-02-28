@@ -1,9 +1,7 @@
 import _ from 'lodash'
 import {css} from 'styled-components'
 
-export function theme (key) {
-  return prop => _.get(prop.theme, key) || console.warn(key, 'is missing in theme', prop.theme)
-}
+export const theme = (key) => prop => _.get(prop.theme, key) || console.warn(key, 'is missing in theme', prop.theme)
 
 const sizes = {
 	large: 992,
