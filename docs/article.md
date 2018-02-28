@@ -214,7 +214,9 @@ You can also define your own constants in a module and use those instead. For ex
 One really neat feature of styled-components is that you can use it as little as you want. You can use your favorite UI framework and add styled-components on top of it. It also means to you can easily migrate an existing project component by component. You can choose to style most of the layout with standard css and only use styled-components for reusable components.  
 
 ## Cons
-Designers / style integrators will need to learn to navigate the project structure. Although I would argue that finding the styles for a component in that component's folder is easier than having to find the right css/sass/less file that contains the rule you need to modify.
+Designers / style integrators will need to learn very basic js to handle variables and use them in place of less/sass.
+
+They will also have to learn to navigate the project structure. Although I would argue that finding the styles for a component in that component's folder is easier than having to find the right css/sass/less file that contains the rule you need to modify.
 
 They will also need to change their tools a bit, if they want syntax highlighting, linting, etc. A good place to start is with [this Atom plugin][atom] and [this babel plugin][babelplugin].
 
